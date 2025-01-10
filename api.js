@@ -9,7 +9,9 @@ const port = process.env.PORT || 3001;
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.DB_URL)
+  .connect(
+    "mongodb+srv://maaz:m00z@cluster0.hwod5.mongodb.net/User?retryWrites=true&w=majority&appName=Cluster0"
+  )
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((error) => console.error("Connection error", error));
 
@@ -19,7 +21,7 @@ const corsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins = [
       "http://localhost:3000", // React app for local development
-      "https://football-wears-ui.vercel.app", // Deployed front-end
+      "https://my-football-app-4edb1671b434.herokuapp.com", // Deployed front-end
     ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true); // Allow the request
@@ -31,12 +33,15 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization", "auth_token"], // Allow custom headers like auth_token
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Middleware for JSON parsing
 app.use(express.json());
 
 // Route handlers
+app.use('/',(req,res)=>{
+  res.send('hello world')
+})
 app.use("/api/product", productRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/cart", cartRoutes);
