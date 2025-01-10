@@ -38,10 +38,6 @@ app.use(cors());
 // Middleware for JSON parsing
 app.use(express.json());
 
-// Route handlers
-app.use('/',(req,res)=>{
-  res.send('hello world')
-})
 app.use("/api/product", productRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/cart", cartRoutes);
