@@ -33,7 +33,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization", "auth_token"], // Allow custom headers like auth_token
 };
 
-app.use(cors());
+app.use(cors(exposedHeaders));
 
 // Middleware for JSON parsing
 app.use(express.json());
